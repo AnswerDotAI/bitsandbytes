@@ -32,7 +32,7 @@ def test_linear_serialization(quant_type, compress_statistics, bias):
         quant_type=quant_type,
         device="meta",
     )
-    new_weight = bnb.nn.Params4bit(data=linear.weight, requires_grad=False)
+    new_weight = bnb.nn.Params4bit(data=linear.weight, quant_type=quant_type, requires_grad=False)
     linear_q.weight = new_weight
     if bias:
         linear_q.bias = torch.nn.Parameter(linear.bias)
